@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Disease Diagnosis Form</title>
+</head>
+<body>
+
+<form action="/diagnose_disease" method="POST">
+    <h1> Diagnose my Disease</h1>
+
+    <label for="Gender">Gender:</label>
+    <input list="gender_list" id="Gender" name="Gender" placeholder="Gender"> <br>
+    <datalist id="gender_list">
+        <option value="Female">
+        <option value="Male">
+    </datalist> 
+
+    <label for="Age">Age (years):</label>
+    <input type="text" id="Age" name="Age" placeholder="Age"> <br>
+
+    <label for="Symptom_1">Symptom 1 (select from the list):</label>
+    <input list="symptoms_list" id="Symptom_1" name="Symptom_1" placeholder="Symptom 1"> <br>
+    <datalist id="symptoms_list">
+        <option value="Runny nose">
+        <option value="Shortness of breath">
+        <option value="Body ache">
+        <option value="Headache">
+        <option value="Sore throat">        
+        <option value="Fatigue">
+        <option value="Fever">
+        <option value="Cough">                                    
+    </datalist> 
+
+    <label for="Symptom_2">Symptom 2 (select from the list):</label>
+    <input list="symptoms_list" id="Symptom_2" name="Symptom_2" placeholder="Symptom 2"> <br>
+
+    <label for="Symptom_3">Symptom 3 (select from the list):</label>
+    <input list="symptoms_list" id="Symptom_3" name="Symptom_3" placeholder="Symptom 3"> <br>
+
+    <label for="Heart_Rate_bpm">Heart Rate (bpm):</label>
+    <input type="text" id="Heart_Rate_bpm" name="Heart_Rate_bpm" placeholder="Heart Rate (bpm)"> <br>
+
+    <label for="Body_Temperature_C">Body Temperature (C):</label>
+    <input type="text" id="Body_Temperature_C" name="Body_Temperature_C" placeholder="Body Temperature (C)"> <br>
+
+    <label for="Blood_Pressure_mmHg">Blood Pressure (mmHG):</label>
+    <input type="text" id="Blood_Pressure_mmHg" name="Blood_Pressure_mmHg" placeholder="Blood Pressure (mmHG)"> <br>
+
+    <label for="Oxygen_Saturation_%">Oxygen Saturation (%):</label>
+    <input type="text" id="Oxygen_Saturation_%" name="Oxygen_Saturation_%" placeholder="Oxygen Saturation (%)"> <br>
+
+    <p><input type='submit' value='Check'/></p>
+</form>
+
+</body>
+</html>
