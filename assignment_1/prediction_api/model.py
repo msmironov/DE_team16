@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 df = pd.read_csv("disease_diagnosis.csv")
 
 # Creating the predictor variables and target variable
-X = df[['Age', 'Heart_Rate_bpm', 'Body_Temperature_C', 'Oxygen_Saturation_%']]
+X = df[['Age', 'Gender', 'Symptom_1', 'Symptom_2', 'Symptom_3', 'Heart_Rate_bpm', 'Body_Temperature_C', 'Blood_Pressure_mmHg', 'Oxygen_Saturation_%']]
 y = df['Diagnosis']
 
 # Split the data into training and testing sets
