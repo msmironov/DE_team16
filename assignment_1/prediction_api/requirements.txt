@@ -1,5 +1,6 @@
 flask
 os
+joblib
 pandas
 numpy
 sklearn.model_selection
