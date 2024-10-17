@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
+from joblib import dump
+
 # Load the data from the github repository
 df = pd.read_csv("disease_diagnosis.csv")
 
@@ -22,6 +24,9 @@ model.fit(X_train, y_train)
 
 # Make predictions
 y_pred = model.predict(X_test)
+
+# Save model
+dump(y_pred, 'model.joblib')
 
 # This code is just for seeing the accuracy, but not necessary for the assignment
 # Accuracy of the model is 61%
