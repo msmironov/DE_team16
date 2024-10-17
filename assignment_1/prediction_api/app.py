@@ -1,23 +1,18 @@
 import os
-
 from flask import Flask, request
-
+from joblib import load
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+model = load('model.joblib')
 
 
 @app.route('/diagnose_disease', methods=["GET", "POST"])
 
-#This code still needs to change
-def predict_str():
-    # the prediction input data in the message body as a JSON payload
-    prediction_inout = request.get_json()
-    return dp.predict_single_record(prediction_inout)
+def predict():
+    symptoms = request.json
+    prediction = model.predict([symptoms.values()])
+    return jsonify({'diagnosis': prediction[0]})
 
-
-# dp = DiabetesPredictor()
-# The code within this conditional block will only run the python file is executed as a
-# script. See https://realpython.com/if-name-main-python/
 if __name__ == '__main__':
     app.run(port=int(os.environ.get("PORT", 5000)), host='0.0.0.0', debug=True)
