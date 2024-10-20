@@ -1,3 +1,3 @@
 flask
 requests
-Werkzeug
+Werkzeug==3.0.4
