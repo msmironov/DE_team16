@@ -3,9 +3,9 @@ import os
 
 import pandas as pd
 from flask import jsonify
-from keras.models import load_model
 import logging
 from io import StringIO
+import joblib
 
 
 class DiseasePredictor:
@@ -18,7 +18,7 @@ class DiseasePredictor:
             try:
                 model_repo = os.environ['MODEL_REPO']
                 file_path = os.path.join(model_repo, "model.joblib")
-                self.model = load_model(file_path)
+                self.model = joblib.load(file_path)
             except KeyError:
                 print("MODEL_REPO is undefined")
                 self.model = load_model('model.py')
