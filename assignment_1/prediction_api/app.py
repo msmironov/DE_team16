@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from joblib import load
+from disease_predictor import DiseasePredictor
+dp = DiseasePredictor()
 
 app = Flask(__name__)
 model = load('model.joblib')  # Make sure the path is correct depending on where you deploy this
