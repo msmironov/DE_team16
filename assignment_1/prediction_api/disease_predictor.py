@@ -17,7 +17,7 @@ class DiseasePredictor:
         if self.model is None:
             try:
                 model_repo = os.environ['MODEL_REPO']
-                file_path = os.path.join(model_repo, "model.py")
+                file_path = os.path.join(model_repo, "model.joblib")
                 self.model = load_model(file_path)
             except KeyError:
                 print("MODEL_REPO is undefined")
