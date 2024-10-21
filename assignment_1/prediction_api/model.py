@@ -23,10 +23,10 @@ model = RandomForestClassifier(random_state=42)
 model.fit(X_train, y_train)
 
 # Make predictions
-y_pred = model.predict(X_test)
+#y_pred = model.predict(X_test)
 
 # Save model
-dump(y_pred, 'model.joblib')
+dump(model, 'model.joblib')
 
 # This code is just for seeing the accuracy, but not necessary for the assignment
 # Accuracy of the model is 61%
