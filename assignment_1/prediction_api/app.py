@@ -11,8 +11,7 @@ dp = DiseasePredictor()
 def predict():
     try:
         res=request.json()
-        prediction_input = res.get_json()
-        prediction_input=dict(prediction_input)
+        prediction_input=dict(res)
         if not prediction_input:
             return jsonify({'message': 'No input data provided'}), 400
 
