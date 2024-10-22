@@ -1,6 +1,5 @@
 flask
 joblib
 pandas
-numpy
-sklearn.model_selection
-sklearn.ensemble
+numpy==1.26.4
+scikit-learn
