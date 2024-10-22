@@ -24,7 +24,6 @@ class DiseasePredictor:
 
         df = pd.DataFrame(prediction_input)
         y_pred = self.model.predict(df)
-        logging.info(y_pred[0])
         status = y_pred[0]
         logging.info(type(status[0]))
         # return the prediction outcome as a json message. 200 is HTTP status code 200, indicating successful completion
