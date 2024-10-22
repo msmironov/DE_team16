@@ -11,7 +11,7 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
 # Environment Variables
-ENV PREDICTOR_API=http://predictor-api-server:5000/diagnose_disease/
+ENV PREDICTOR_API=http://predictor-api-server:5000/predict_disease/
 # Run our App
 CMD ["python3","app.py"]
 # We can also use an ENTRYPOINT and a CMD
