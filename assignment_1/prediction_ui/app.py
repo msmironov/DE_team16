@@ -57,7 +57,7 @@ def diagnose():
             
             #Encode Categorical Variables 
 
-            X=pd.DataFrame(columns=['Age', 'Heart_Rate_bpm', 'Body_Temperature_C', 'Oxygen_Saturation_%',
+        X=pd.DataFrame(columns=['Age', 'Heart_Rate_bpm', 'Body_Temperature_C', 'Oxygen_Saturation_%',
            'Systolic_BP', 'Diastolic_BP', 'Gender_Male', 'Symptom_1_0',
            'Symptom_1_1', 'Symptom_1_2', 'Symptom_1_3', 'Symptom_1_4',
            'Symptom_1_5', 'Symptom_1_6', 'Symptom_1_7', 'Symptom_2_0',
@@ -66,36 +66,36 @@ def diagnose():
            'Symptom_3_1', 'Symptom_3_2', 'Symptom_3_3', 'Symptom_3_4',
            'Symptom_3_5', 'Symptom_3_6', 'Symptom_3_7'])
 
-            X.loc[0]=0
+        X.loc[0]=0
             
-            pred_df=pd.DataFrame([prediction_input])
+        pred_df=pd.DataFrame([prediction_input])
             
-            category_map={'Fatigue': 0, 'Sore throat': 1, 'Body ache': 2, 'Shortness of breath': 3,
+        category_map={'Fatigue': 0, 'Sore throat': 1, 'Body ache': 2, 'Shortness of breath': 3,
                'Runny nose': 4, 'Cough': 5, 'Fever': 6, 'Headache': 7}
 
-            category_map_gender={'Male': 1, 'Female': 0}
+        category_map_gender={'Male': 1, 'Female': 0}
 
-            pred_df['Symptom_1']=pred_df['Symptom_1'].map(category_map)
-            pred_df['Symptom_2']=pred_df['Symptom_2'].map(category_map)
-            pred_df['Symptom_3']=pred_df['Symptom_3'].map(category_map)
+        pred_df['Symptom_1']=pred_df['Symptom_1'].map(category_map)
+        pred_df['Symptom_2']=pred_df['Symptom_2'].map(category_map)
+        pred_df['Symptom_3']=pred_df['Symptom_3'].map(category_map)
 
-            pred_df['Gender']=pred_df['Gender'].map(category_map_gender)
+        pred_df['Gender']=pred_df['Gender'].map(category_map_gender)
 
-            pred_df['Gender_Male']=pred_df['Gender']
+        pred_df['Gender_Male']=pred_df['Gender']
 
-            ohe=OneHotEncoder(drop='if_binary', sparse_output=False)
+        ohe=OneHotEncoder(drop='if_binary', sparse_output=False)
 
-            pred_df_ohe=pred_df[['Symptom_1', 'Symptom_2', 'Symptom_3']]
+        pred_df_ohe=pred_df[['Symptom_1', 'Symptom_2', 'Symptom_3']]
 
-            pred_df_ohe=pd.DataFrame(ohe.fit_transform(pred_df_ohe), columns=ohe.get_feature_names_out())
+        pred_df_ohe=pd.DataFrame(ohe.fit_transform(pred_df_ohe), columns=ohe.get_feature_names_out())
 
-            pred_df=pred_df.drop(columns=['Symptom_1', 'Symptom_2', 'Symptom_3', 'Gender'])
+        pred_df=pred_df.drop(columns=['Symptom_1', 'Symptom_2', 'Symptom_3', 'Gender'])
 
-            pred_df=pd.merge(pred_df, pred_df_ohe, how='inner', left_index=True, right_index=True)
+        pred_df=pd.merge(pred_df, pred_df_ohe, how='inner', left_index=True, right_index=True)
 
-            for col in X.columns:
-                if col in pred_df.columns:
-                    X[col]=pred_df[col]
+        for col in X.columns:
+            if col in pred_df.columns:
+                X[col]=pred_df[col]
                     
         df_json = X.to_json(orient='records')
 
