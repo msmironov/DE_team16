@@ -10,7 +10,7 @@ dp = DiseasePredictor()
 @app.route('/predict_disease/', methods=['POST'])
 def predict():
     try:
-        prediction_input=request.json()
+        prediction_input=request.get_json()
         if not prediction_input:
             return jsonify({'message': 'No input data provided'}), 400
 
