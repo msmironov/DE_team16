@@ -19,18 +19,22 @@ def diagnose():
 
     elif request.method == "POST":
         try:
+            # Retrieve values and provide defaults if not found
+            age = request.form.get("Age", "0")
+            heart_rate = request.form.get("Heart_Rate_bpm", "0")
+            body_temp = request.form.get("Body_Temperature_C", "0.0")
+            oxygen_sat = request.form.get("Oxygen_Saturation_%", "0")
+            
             prediction_input = {
-
-                "Gender": request.form.get("Gender"),
-                "Age": int(request.form.get("Age")),
-                "Symptom_1": request.form.get("Symptom_1"),
-                "Symptom_2": request.form.get("Symptom_2"),
-                "Symptom_3": request.form.get("Symptom_3"),
-                "Heart_Rate_bpm": int(request.form.get("Heart_Rate_bpm")),
-                "Body_Temperature_C": float(request.form.get("Body_Temperature_C")),
-                "Blood_Pressure_mmHg": request.form.get("Blood_Pressure_mmHg"),
-                "Oxygen_Saturation_%": int(request.form.get("Oxygen_Saturation_%"))
-
+                "Gender": request.form.get("Gender", "Unknown"),
+                "Age": int(age) if age.isdigit() else 0,
+                "Symptom_1": request.form.get("Symptom_1", "None"),
+                "Symptom_2": request.form.get("Symptom_2", "None"),
+                "Symptom_3": request.form.get("Symptom_3", "None"),
+                "Heart_Rate_bpm": int(heart_rate) if heart_rate.isdigit() else 0,
+                "Body_Temperature_C": float(body_temp) if body_temp.replace('.', '', 1).isdigit() else 0.0,
+                "Blood_Pressure_mmHg": request.form.get("Blood_Pressure_mmHg", "120/80"),
+                "Oxygen_Saturation_%": int(oxygen_sat) if oxygen_sat.isdigit() else 0
             }
 
             # Handle blood pressure
@@ -67,3 +71,4 @@ def diagnose():
 # script. See https://realpython.com/if-name-main-python/
 if __name__ == '__main__':
     app.run(port=int(os.environ.get("PORT", 5000)), host='0.0.0.0', debug=True)
+
