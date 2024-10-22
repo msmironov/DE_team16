@@ -26,4 +26,4 @@ class DiseasePredictor:
         y_pred = self.model.predict(df)
         status = y_pred[0]
         # return the prediction outcome as a json message. 200 is HTTP status code 200, indicating successful completion
-        return jsonify({'result': str(status[0])}), 200
+        return jsonify({'result': str(status)}), 200
