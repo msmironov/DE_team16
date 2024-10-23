@@ -99,7 +99,7 @@ def diagnose():
                     
         df_json = X.to_json(orient='records')
 
-        return df_json
+        return jsonify(df_json)
 
 
 
