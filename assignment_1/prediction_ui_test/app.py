@@ -8,7 +8,7 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
 # Flask constructor
-app = Flask(__name__, template_folder='.')
+app = Flask(__name__)
 
 
 # A decorator used to tell the application
@@ -99,17 +99,8 @@ def diagnose():
                     
         df_json = X.to_json(orient='records')
 
-        logging.debug("Prediction input : %s", prediction_input)
-        predictor_api_url = os.environ['PREDICTOR_API']
-        res = requests.post(predictor_api_url, json=df_json)
+        return df_json
 
-        prediction_value = res.json()['result']
-        logging.info("Prediction Output : %s", prediction_value)
-        return render_template("response_form.html",
-                               prediction_variable=prediction_value)
-
-    else:
-        return jsonify(message="Method Not Allowed"), 405  # The 405 Method Not Allowed should be used to indicate
 
 
 
