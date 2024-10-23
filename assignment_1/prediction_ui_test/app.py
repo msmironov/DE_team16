@@ -8,7 +8,7 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
 # Flask constructor
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 
 
 # A decorator used to tell the application
