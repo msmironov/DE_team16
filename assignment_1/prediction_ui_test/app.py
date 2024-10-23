@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # A decorator used to tell the application
 # which URL is associated with the function
-@app.route('/diagnose_disease', methods=["GET", "POST"])
+@app.route('/diagnose_disease_test', methods=["GET", "POST"])
 def diagnose():
     if request.method == "GET":
         return render_template("input_form.html")
