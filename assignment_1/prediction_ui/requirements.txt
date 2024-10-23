@@ -3,3 +3,6 @@ requests
 Werkzeug==3.0.4
 requests==2.32.3
 urllib3==2.2.3
+pandas
+numpy==1.26.4
+scikit-learn
