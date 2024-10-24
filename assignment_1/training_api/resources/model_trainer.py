@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.preprocessing import OneHotEncoder
 import joblib
 import os
+import logging
 
 def train(dataset):
     # split into input (X) and output (Y) variables
