@@ -6,6 +6,7 @@ from sklearn.preprocessing import OneHotEncoder
 import joblib
 import os
 import logging
+from flask import jsonify
 
 def train(dataset):
     # split into input (X) and output (Y) variables
