@@ -22,12 +22,17 @@ def train(dataset):
     category_map={'Fatigue': 0, 'Sore throat': 1, 'Body ache': 2, 'Shortness of breath': 3,
                'Runny nose': 4, 'Cough': 5, 'Fever': 6, 'Headache': 7}
 
+    category_map_gender={'Male': 1, 'Female': 0}
+
     X['Symptom_1']=X['Symptom_1'].map(category_map)
     X['Symptom_2']=X['Symptom_2'].map(category_map)
     X['Symptom_3']=X['Symptom_3'].map(category_map)
 
+    X['Gender']=X['Gender'].map(category_map_gender)
+    X['Gender_Male']=X['Gender']
+
     ohe=OneHotEncoder(drop='if_binary', sparse_output=False)
-    X_ohe=X[['Gender', 'Symptom_1', 'Symptom_2', 'Symptom_3']]
+    X_ohe=X[['Symptom_1', 'Symptom_2', 'Symptom_3']]
     X_ohe=pd.DataFrame(ohe.fit_transform(X_ohe), columns=ohe.get_feature_names_out())
 
     X=X.drop(columns=['Gender', 'Symptom_1', 'Symptom_2', 'Symptom_3'])
