@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.preprocessing import OneHotEncoder
 import joblib
+import os
 
 def train(dataset):
     # split into input (X) and output (Y) variables
