@@ -15,7 +15,7 @@ def train_models():
     # the training input data in the message body as a JSON payload
     training_input = request.get_json()
     df = pd.read_json(json.dumps(training_input), orient='records')
-    resp = model_trainer.train(df.values)
+    resp = model_trainer.train(df)
     return resp
 
 
