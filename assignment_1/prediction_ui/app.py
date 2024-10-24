@@ -103,7 +103,7 @@ def diagnose():
         predictor_api_url = os.environ['PREDICTOR_API']
         res = requests.post(predictor_api_url, json=json.loads(df_json))
 
-        prediction_value = res.json()['result']
+        prediction_value = prediction_value = json.loads(res.text)['result']
         logging.info("Prediction Output : %s", prediction_value)
         return render_template("response_form.html",
                                prediction_variable=prediction_value)
