@@ -45,7 +45,7 @@ def train(dataset):
     
     scores = accuracy_score(y, y_pred)
     text_out = {
-        "accuracy:": scores[0]
+        "accuracy:": scores
     }
 
     # Saving model in a given location provided as an env. variable
