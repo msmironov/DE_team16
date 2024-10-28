@@ -1,7 +1,7 @@
 {
   "project_id": "your project id",
   "data_bucket": "your project data bucket name",
-  "trainset_filename": "training_set.csv",
-  "testset_filename": "prediction_set.csv", 
-  "model_repo": "your project model repo"
+  "dataset_filename": "training_set.csv", 
+  "model_repo": "your project model repo",
+  "trigger_id": "prediction services trigger id"
 }
