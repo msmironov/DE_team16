@@ -1,7 +1,7 @@
 {
-  "project_id": "your project id",
-  "data_bucket": "your project data bucket name",
-  "dataset_filename": "training_set.csv", 
-  "model_repo": "your project model repo",
-  "trigger_id": "prediction services trigger id"
+  "project_id": "still-entity-435508-a1",
+  "data_bucket": "data_de2024_574440",
+  "dataset_filename": "disease_diagnosis_final.csv", 
+  "model_repo": "models_de2024_574440",
+  "trigger_id": "a7182d85-0a55-4222-8171-8dc79a011f3a"
 }
