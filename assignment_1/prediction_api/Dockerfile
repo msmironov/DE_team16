@@ -11,7 +11,9 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
 # Environment Variables
-ENV MODEL_REPO=/usr/src/myapp
+ENV PROJECT_ID=still-entity-435508-a1
+ENV MODEL_REPO=models_de2024_574440
+ENV MODEL_NAME=model.joblib
 # Run our App
 CMD ["python3","app.py"]
 # We can also use an ENTRYPOINT and a CMD

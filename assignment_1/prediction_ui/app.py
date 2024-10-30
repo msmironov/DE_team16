@@ -55,8 +55,9 @@ def diagnose():
             return jsonify(message=f"Error processing input data: {str(e)}"), 400
                 
             
-            #Encode Categorical Variables 
+        #Encode Categorical Variables 
 
+        ##Create empty DataFrame
         X=pd.DataFrame(columns=['Age', 'Heart_Rate_bpm', 'Body_Temperature_C', 'Oxygen_Saturation_%',
            'Systolic_BP', 'Diastolic_BP', 'Gender_Male', 'Symptom_1_0',
            'Symptom_1_1', 'Symptom_1_2', 'Symptom_1_3', 'Symptom_1_4',
@@ -67,42 +68,51 @@ def diagnose():
            'Symptom_3_5', 'Symptom_3_6', 'Symptom_3_7'])
 
         X.loc[0]=0
-            
+
+        ##Transform input into a DF
         pred_df=pd.DataFrame([prediction_input])
-            
+
+        #Create mappings to encode symptoms and gender
         category_map={'Fatigue': 0, 'Sore throat': 1, 'Body ache': 2, 'Shortness of breath': 3,
                'Runny nose': 4, 'Cough': 5, 'Fever': 6, 'Headache': 7}
 
         category_map_gender={'Male': 1, 'Female': 0}
 
+        ##Map symptoms and gender
         pred_df['Symptom_1']=pred_df['Symptom_1'].map(category_map)
         pred_df['Symptom_2']=pred_df['Symptom_2'].map(category_map)
         pred_df['Symptom_3']=pred_df['Symptom_3'].map(category_map)
 
         pred_df['Gender']=pred_df['Gender'].map(category_map_gender)
 
+        ##Only Gender_Male column will be used
         pred_df['Gender_Male']=pred_df['Gender']
 
+        ##OneHotEncode categorical variables
         ohe=OneHotEncoder(drop='if_binary', sparse_output=False)
 
         pred_df_ohe=pred_df[['Symptom_1', 'Symptom_2', 'Symptom_3']]
 
         pred_df_ohe=pd.DataFrame(ohe.fit_transform(pred_df_ohe), columns=ohe.get_feature_names_out())
 
+        ##Drop old columns and merge with new ones
         pred_df=pred_df.drop(columns=['Symptom_1', 'Symptom_2', 'Symptom_3', 'Gender'])
 
         pred_df=pd.merge(pred_df, pred_df_ohe, how='inner', left_index=True, right_index=True)
 
+        ##Create final df and transform into JSON
         for col in X.columns:
             if col in pred_df.columns:
                 X[col]=pred_df[col]
                     
         df_json = X.to_json(orient='records')
 
+        #Send request
         logging.debug("Prediction input : %s", df_json)
         predictor_api_url = os.environ['PREDICTOR_API']
         res = requests.post(predictor_api_url, json=json.loads(df_json))
 
+        #Read the response and produce the output html page
         prediction_value = res.json()['result']
         logging.info("Prediction Output : %s", prediction_value)
         return render_template("response_form.html",

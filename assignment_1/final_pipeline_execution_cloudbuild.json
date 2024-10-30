@@ -13,7 +13,7 @@
        "name": "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/pipeline-executor:0.0.1",
        "args": [
            "--name=disease-diagnose-pipeline",           
-		   "--pipeline_def=./pipeline.yaml",
+		   "--pipeline_def=./assignment_1/disease_predictor_training_pipeline.yaml",
            "--pipeline_root=gs://${_TEMP_REPO}",         
 		   "--parameter_dict=./parameters.json"
         ]

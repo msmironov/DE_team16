@@ -1,15 +1,19 @@
 import os
 from flask import Flask, request, jsonify
 from disease_predictor import DiseasePredictor
+from google.cloud import storage
+import joblib
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+@app.route('/diabetes_predictor/model', methods=['PUT'])  # trigger updating the model
+def refresh_model():
+    return dp.download_model()
 
 @app.route('/predict_disease/', methods=['POST'])
 def predict():
     prediction_input=request.get_json()
-    
     return dp.predict_single_record(prediction_input)
 
 # Instantiate the predictor

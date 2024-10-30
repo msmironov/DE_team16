@@ -1,6 +1,0 @@
-flask
-joblib
-pandas
-numpy
-numpy==1.26.4
-scikit-learn
